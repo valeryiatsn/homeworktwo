@@ -41,8 +41,7 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
         }
 
         if (onChangeOption) {
-            onChangeOption(e.currentTarget.value)
-
+            onChangeOption(+e.currentTarget.value) // преобразуем строку в число
         }
     }
 
