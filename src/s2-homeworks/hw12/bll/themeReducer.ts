@@ -1,4 +1,4 @@
-type InitStateType = {
+export type InitStateType = {
     themeId: number
 }
 
