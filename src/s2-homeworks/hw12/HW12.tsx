@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from 'react'
+import React, {useEffect} from 'react'
 import s from './HW12.module.css'
 import s2 from '../../s1-main/App.module.css'
 import SuperSelect from '../hw07/common/c5-SuperSelect/SuperSelect'
@@ -31,7 +31,7 @@ const HW12 = () => {
         dispatch(changeThemeId(id))
     }
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         document.documentElement.dataset.theme = themeId + ''
     }, [themeId])
 
