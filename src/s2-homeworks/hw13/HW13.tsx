@@ -38,24 +38,27 @@ const HW13 = () => {
                 setCode('Код 200!')
                 setImage(success200)
                 // дописать
-                setText(res.data.info || 'Success')
+                setText('...всё ок')  //
                 setInfo(res.data.error_text || '')
 
             })
             .catch((e) => {
                 // дописать
                 const status = e.response?.status
+                const errorText = e.response?.data?.info || ''
                 setCode(status ? `Код ${status}!` : 'Ошибка сети!')
 
                 if (status === 400) {
                     setImage(error400)
+                    setText('Ты не отправил success в body вообще!')
                 } else if (status === 500) {
                     setImage(error500)
+                    setText('эмитация ошибки на сервере')
                 } else {
                     setImage(errorUnknown)
+                    setText(errorText || 'Error')
                 }
 
-                setText(e.response?.data?.info || 'Error')
                 setInfo(e.response?.data?.error_text || e.message)
 
             })
