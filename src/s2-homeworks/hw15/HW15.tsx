@@ -11,8 +11,6 @@ import SuperSort from './common/c10-SuperSort/SuperSort'
 * 2 - дописать SuperSort
 * 3 - проверить pureChange тестами
 * 3 - дописать sendQuery, onChangePagination, onChangeSort в HW15
-* 4 - сделать стили в соответствии с дизайном
-* 5 - добавить HW15 в HW5/pages/JuniorPlus
 * */
 
 type TechType = {
@@ -52,34 +50,60 @@ const HW15 = () => {
         getTechs(params)
             .then((res) => {
                 // делает студент
-
-                // сохранить пришедшие данные
-
-                //
+                if (res?.data){
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.error('Error fetching techs:', error)
+                setTechs([])
+                setLoading(false)
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
+        setPage(newPage)
+        setCount(newCount)
         // setPage(
         // setCount(
-
+        const params = {
+            sort: sort,
+            page: newPage,
+            count: newCount
+        }
+        sendQuery(params)
         // sendQuery(
         // setSearchParams(
-
+        setSearchParams({
+            sort: sort,
+            page: String(newPage),
+            count: String(newCount),
+        })
         //
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
-
+        setSort(newSort)
+        setPage(1)
         // setSort(
         // setPage(1) // при сортировке сбрасывать на 1 страницу
-
+        const params = {
+            sort: newSort,
+            page: 1,
+            count: count
+        }
+        sendQuery(params)
         // sendQuery(
         // setSearchParams(
-
+        setSearchParams({
+            sort: newSort,
+            page: '1',
+            count: String(count),
+        })
         //
     }
 
